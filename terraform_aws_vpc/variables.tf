@@ -1,32 +1,74 @@
 # Mandatory
 variable "project" {
     type = string
+    default = "roboshop"
 }
 
 variable "environment" {
     type = string
+    default = "dev"
 }
 
-variable "component" {
+
+
+# Optional
+variable "vpc_tags" {
+    default = {}
+    type = map
+}
+
+variable "cidr_block"{
     type = string
+    default = "10.0.0.0/16"
 }
 
-variable "instance_type" {
-    default = "t3.micro"
-    type = string
-
-    validation {
-        condition     = contains(["t3.micro", "t3.small", "t3.medium"], var.instance_type)
-        error_message = "Instance type should be either t3.micro or t3.small"
-    }
+variable "igw_tags" {
+    default = {}
+    type = map
 }
 
-variable "sg_ids" {
+variable "public_cidr_blocks" {
+    default = ["10.0.1.0/24","10.0.2.0/24"]
     type = list
 }
 
-# Optional
-variable "ec2_tags" {
+variable "public_subnet_tags" {
+    default = {}
+    type = map
+}
+
+variable "private_cidr_blocks" {
+    default = ["10.0.11.0/24","10.0.12.0/24"]
+    type = list
+}
+
+variable "database_cidr_blocks" {
+    default = ["10.0.21.0/24","10.0.22.0/24"]
+    type = list
+}
+
+
+variable "private_subnet_tags" {
+    default = {}
+    type = map
+}
+
+variable "database_subnet_tags" {
+    default = {}
+    type = map
+}
+
+variable "routing_table_tags" {
+    default = {}
+    type = map
+}
+
+variable "eip_tags" {
+    default = {}
+    type = map
+}
+
+variable "nat_gateway_tags" {
     default = {}
     type = map
 }

@@ -1,9 +1,10 @@
 locals {
     common_tags = {
         Project = var.project
-        Environment = var.env
+        Environment = var.environment
         terraform = "true"
-        name = local.common_name
+        Name = local.common_name
     }
-    common_name = "$(var.project)-$(var.env)"
+    common_name = "${var.project}-${var.environment}"
+    az_names = slice(data.aws_availability_zones.available.names,0,2)
 }
